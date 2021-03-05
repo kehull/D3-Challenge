@@ -1,4 +1,4 @@
-var svgWidth = 960;
+var svgWidth = 825;
 var svgHeight = 500;
 
 var margin = {
@@ -62,7 +62,7 @@ d3.csv("data.csv").then(function(stateData) {
     .append("circle")
     .attr("cx", d => xLinearScale(d.smokes))
     .attr("cy", d => yLinearScale(d.income))
-    .attr("r", "15")
+    .attr("r", "5")
     .attr("fill", "pink")
     .attr("opacity", ".5");
 
