@@ -5,7 +5,7 @@ var margin = {
   top: 20,
   right: 40,
   bottom: 60,
-  left: 100
+  left: 70
 };
 
 var width = svgWidth - margin.left - margin.right;
@@ -33,11 +33,11 @@ d3.csv("data.csv").then(function(stateData) {
     // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([20, d3.max(stateData, d => d.smokes)])
+      .domain([9, d3.max(stateData, d => d.smokes)])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(stateData, d => d.income)])
+      .domain([38000, d3.max(stateData, d => d.income)])
       .range([height, 0]);
 
     // Step 3: Create axis functions
@@ -62,8 +62,8 @@ d3.csv("data.csv").then(function(stateData) {
     .append("circle")
     .attr("cx", d => xLinearScale(d.smokes))
     .attr("cy", d => yLinearScale(d.income))
-    .attr("r", "5")
-    .attr("fill", "pink")
+    .attr("r", "10")
+    .attr("fill", "blue")
     .attr("opacity", ".5");
 
     // Step 6: Initialize tool tip
@@ -81,7 +81,7 @@ d3.csv("data.csv").then(function(stateData) {
 
     // Step 8: Create event listeners to display and hide the tooltip
     // ==============================
-    circlesGroup.on("click", function(data) {
+    circlesGroup.on("mouseover", function(data) {
       toolTip.show(data, this);
     })
       // onmouseout event
@@ -92,7 +92,7 @@ d3.csv("data.csv").then(function(stateData) {
     // Create axes labels
     chartGroup.append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 0 - margin.left + 40)
+      .attr("y", 0 - margin.left + 0)
       .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
