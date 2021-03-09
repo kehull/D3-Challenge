@@ -64,7 +64,8 @@ d3.csv("data.csv").then(function(stateData) {
     .attr("cy", d => yLinearScale(d.income))
     .attr("r", "10")
     .attr("fill", "blue")
-    .attr("opacity", ".5");
+    .attr("opacity", ".5")
+    .append("text")
 
     // Step 6: Initialize tool tip
     // ==============================
