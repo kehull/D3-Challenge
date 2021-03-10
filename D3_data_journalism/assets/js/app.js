@@ -57,15 +57,32 @@ d3.csv("data.csv").then(function(stateData) {
     // Step 5: Create Circles
     // ==============================
     var circlesGroup = chartGroup.selectAll("circle")
-    .data(stateData)
-    .enter()
-    .append("circle")
-    .attr("cx", d => xLinearScale(d.smokes))
-    .attr("cy", d => yLinearScale(d.income))
-    .attr("r", "10")
-    .attr("fill", "blue")
-    .attr("opacity", ".5")
-    .append("text")
+
+    circlesGroup
+      .data(stateData)
+      .enter()
+      .append("circle")
+      .attr("cx", (d) => xLinearScale(d.smokes))
+      .attr("cy", (d) => yLinearScale(d.income))
+      .attr("r", "15")
+      .classed("stateCircle", true)
+
+      circlesGroup
+      .data(stateData)
+      .enter()
+      .append("text")
+      .classed("stateText", true)
+      .text(function (d) {
+        console.log(d);
+        return d.abbr;
+      })
+      .attr("dx", function(d) {
+        console.log(d);
+        return xLinearScale(d.smokes);
+      })
+      .attr("dy", function(d) {
+        return yLinearScale(d.income);
+      })
 
     // Step 6: Initialize tool tip
     // ==============================
