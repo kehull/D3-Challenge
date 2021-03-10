@@ -84,6 +84,10 @@ d3.csv("data.csv").then(function(stateData) {
         return yLinearScale(d.income);
       })
 
+    .data(stateData)
+      .enter()
+      .classed("stateCircle", true)
+
     // Step 6: Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
