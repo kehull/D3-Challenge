@@ -64,7 +64,7 @@ d3.csv("data.csv").then(function(stateData) {
       .append("circle")
       .attr("cx", (d) => xLinearScale(d.smokes))
       .attr("cy", (d) => yLinearScale(d.income))
-      .attr("r", "15")
+      .attr("r", "10")
       .classed("stateCircle", true)
 
       circlesGroup
@@ -81,7 +81,7 @@ d3.csv("data.csv").then(function(stateData) {
         return xLinearScale(d.smokes);
       })
       .attr("dy", function(d) {
-        return yLinearScale(d.income);
+        return yLinearScale(d.income) + 3;
       })
 
     .data(stateData)
@@ -97,9 +97,13 @@ d3.csv("data.csv").then(function(stateData) {
         return (`${d.abbr}<br>Smokes: ${d.smokes}<br>Income: ${d.income}`);
       });
 
-    // Step 7: Create tooltip in the chart
+     // Step 7: Create tooltip in the chart
     // ==============================
-    chartGroup.call(toolTip);
+    chartGroup
+    .data(stateData)
+    .enter()
+    .call(toolTip);
+    console.log("tooltip");
 
     // Step 8: Create event listeners to display and hide the tooltip
     // ==============================
